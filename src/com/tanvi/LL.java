@@ -6,9 +6,6 @@ public class LL {
     private Node tail;
     private int size;
 
-    
-
-    
     public LL() {
         this.size = 0;
     }
@@ -56,6 +53,60 @@ public class LL {
         temp.next = node;
 
     }
+
+    public int deleteFirst(){
+        int val = head.val;
+        head = head.next;
+        if(head == null){
+            tail = null;
+        }
+        size--;
+        return val;
+    }
+
+        public int deleteLast(){
+        if (size<=1)
+            return deleteFirst();
+        LL.Node secondLast = get(size-2);
+        int val = tail.val;
+        tail = secondLast;
+        tail.next = null;
+        return val;
+    }
+
+    public int deletePosition(int index){
+        if(index==0) {
+            return deleteFirst();
+        }
+        if(index==size-1) {
+            return deleteLast();
+        }
+
+        Node prev = get(index - 1);
+        int val = prev.next.val;
+        prev.next = prev.next.next;
+        return val;
+    }
+
+    private Node find(int value) {
+        Node node = head;
+        while(node!=null){
+            if(node.val == value){
+                return node;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+    private Node get(int index) {
+        Node node = head;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
+    }
+
+
     public void display(){
         Node temp = head;
         while(temp!=null){
