@@ -1,4 +1,4 @@
-package com.tanvi;
+package com.tanvi.linkedlist;
 
 public class DLL {
 
